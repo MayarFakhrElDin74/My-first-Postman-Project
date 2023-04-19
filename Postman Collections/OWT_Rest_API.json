@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "2d70a733-c2f1-4c32-b824-7a3fb8de412f",
+		"name": "OWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "List all employees data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b4d0988-a4ff-44d4-b308-f7d49d7b25f3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Validate employee username\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"qrippin\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "67b16503-50b0-4f5e-8487-2c9697672a7e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/employees"
+					},
+					"response": []
+				},
+				{
+					"name": "Show single employee data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b09b4cf-2fd0-48ec-b7a1-38fff532e77c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"pm.test(\"Validate employee name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Braulio Luettgen\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "8ef9c602-df6a-4755-8dc0-49b7bba7b02a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/employees/1"
+					},
+					"response": []
+				},
+				{
+					"name": "List all projects on the basis of employeed Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a9653f3a-df63-4eaa-ab15-3acf2631a442",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Validate project domain\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"zemlak.com\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "83d7f81b-6f2c-4025-ab61-ec4801c34946",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/employees/1/projects"
+					},
+					"response": []
+				},
+				{
+					"name": "Add employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9be22bb4-89eb-49e2-9b19-e7af7927d2bc",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Validate added employee username\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"mayar74\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "929333f1-d3a5-40f1-94eb-7211fcdd134b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"mayar74\",\r\n    \"name\": \"Mayar Mohamed Fakhr Eldin\",\r\n    \"email\": \"test@ay7aga.com\",\r\n    \"gender\": \"Female\",\r\n    \"designation\": \"Software Testing Engineer\",\r\n    \"phone_number\": \"01000000000\",\r\n    \"complete_address\": \"5 Tahrir Square, Cairo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OWT_Base_URL}}/employees",
+							"host": [
+								"{{OWT_Base_URL}}"
+							],
+							"path": [
+								"employees"
+							],
+							"query": [
+								{
+									"key": "new_empolyee_data",
+									"value": "\"error\": 0,\n    \"msg\": \"data created\",\n    \"data\": {\n        \"username\": \"mayar74\",\n        \"name\": \"Mayar Mohamed Fakhr Eldin\",\n        \"email\": \"test@ay7aga.com\",\n        \"gender\": \"Female\",\n        \"designation\": \"Software Testing Engineer\",\n        \"phone_number\": \"01000000000\",\n        \"complete_address\": \"5 Tahrir Square, Cairo\",\n        \"id\": 101",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE employee data on the basis of employeed ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e274730-4d91-4fc7-9def-441241666f92",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Confirm successful employee deleting\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data deleted successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "760ab1be-a9bf-4af1-b869-d6f246ebcddc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/employees/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee data on the basis of employeed ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f87a7b5-454d-464d-8637-60719761a893",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Validate updated emplyoyee name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Maria Jose Garcia\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "59bf234b-a084-493e-996b-7e1fd94b9dbe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"username\": \"maria95\",\r\n    \"name\": \"Maria Jose Garcia\",\r\n    \"email\": \"maria@test.com\",\r\n    \"gender\": \"Female\",\r\n    \"designation\": \"CTO\",\r\n    \"phone_number\": \"0120000000000\",\r\n    \"complete_address\": \"8102 Helen Meadow Apt. 802\\nSouth Henry, AK 11483-6250\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{OWT_Base_URL}}/employees/6"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "2f58100d-551f-4628-893a-c5d3beee2385"
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "List all projects data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "637c079d-2284-4c81-a5b3-8a009100d337",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "bf98e4e6-55a1-417d-a48d-c11da8073702",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/projects"
+					},
+					"response": []
+				},
+				{
+					"name": "Show single project data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dd8f620-5c9e-4d63-961c-6c86d7c38c2e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Validate project domain\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"okuneva.org\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "e222180c-f295-4dc9-9c38-1e05bce4d4b2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/projects/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update project data on the basis of project ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30bd721d-250c-4b3d-a660-45ae0b7796da",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 800ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"pm.test(\"Validate project domain\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hello.hi\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "4cca6a9d-0c83-4b61-95dc-210aa00bff2e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"employeeId\": 90,\r\n    \"project_domain\": \"Hello.hi\",\r\n    \"description\": \"Anything.\",\r\n    \"budget\": \"5050 INR\",\r\n    \"time_estimate\": \"8 months\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{OWT_Base_URL}}/projects/5"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE project data on the basis of project ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a92e0841-2967-4bf5-a296-b4ecf238a52f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Validate that project is deleted successfully\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data deleted successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "cb8bbddf-96f5-41d9-a0b2-c2d413601307",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/projects/3"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "5101a67c-4555-4502-aac4-c42f397506f8"
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "List all messages data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f613c7b-c2e0-4f73-903e-304808504e4a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "3df3d3d5-4037-4a27-b212-3a6305381c55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Show single message data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e192c782-69c8-45db-af77-fdccf68f80bd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Validate projectId\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"491\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "58daf75f-a444-4a01-b173-284b3bbc5cb4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/messages/1"
+					},
+					"response": []
+				},
+				{
+					"name": "POST message data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71a3650d-125f-45d0-95e2-4849edbc828f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Validate message title\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Good morning!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "de0c6fdf-b2a0-48a3-8b9b-cd1b206a59ca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 101,\r\n    \"projectId\": 350,\r\n    \"title\": \"Good morning!\",\r\n    \"body\": \"Numquam consequatur aperiam temporibus numquam necessitatibus molestiae. Asperiores ut nam quod a.\",\r\n    \"message_status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{OWT_Base_URL}}/messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Update message data on the basis of message ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad68b208-2ad3-4e1d-85b8-8a3126da8237",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Validate message title\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Hola, mundo!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "3b1d7644-c5d4-4176-9b94-66fabcc7d05f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 8,\r\n    \"projectId\": 990,\r\n    \"title\": \"Hola, mundo!\",\r\n    \"body\": \"Fuga et perspiciatis sequi excepturi tempore ut neque qui. Harum dolorem qui quia et.\",\r\n    \"message_status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{OWT_Base_URL}}/messages/1"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE message data on the basis of message ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea44a5c8-901d-49d3-9079-b0a4a9271d6e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Confirm deleting message successfully\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data deleted successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "ab70a59d-2c11-4c26-8f1c-919306b9d0bb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{OWT_Base_URL}}/messages/5"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "a081d6f9-ee55-44fa-b183-d1366f9869ef"
+		}
+	]
+}
